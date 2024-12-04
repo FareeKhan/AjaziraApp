@@ -1,0 +1,241 @@
+
+{
+  "firstTitle":"Premium\nQuality Meat\nDelivered Fresh",
+  "firstSubtitle": "Get the best cuts, sourced locally and\ndelivered to your doorstep with\nfreshness guaranteed.",
+  "secondTitle":"Personalized\nShopping for\n Your Taste",
+  "secondSubTitle": "Easily filter by cut, type, or dietary preference. We offer everything from grass-fed beef to organic chicken",
+  "thirdTitle":"Quick Delivery\n& Easy Payment\nOptions",
+  "thirdSubTitle": "Enjoy quick delivery, secure\npayments, and a hassle-free\nshopping experience, all within a few\ntaps.",
+  "skip":"Skip",
+  "next":"Next",
+  "loginTitle":"Login to your\naccount",
+  "loginSubTitle":"Please sign in to your account",
+  "phoneNo":"Phone Number",
+  "sendOtp":"Send OTP",
+  "notHaveAccount":"Don't have an account?",
+  "register":"Register",
+  "otp":"OTP",
+  "numberVerify":"Number Verification",
+  "numberVerifySubTitle":"Enter the verification code we send you on:",
+  "notRcvOtp":"Didn’t receive code?",
+  "resend":"Resend",
+
+  "emailAddress":"Email Address",
+  "enterEmail":"Enter Email",
+  "enterUserName":"Enter User Name",
+  "password":"Password",
+  "enterPassword":"Enter Password",
+  "forgotPassword":"Forgot Password?",
+  "forgotPass":"Forgot Password",
+  "signIn":"Sign In",
+  "orSignInWith":"or Sign in with",
+  "createNew":"Create your new\naccount",
+  "createNewSub":"Create an account to start looking for the food\nyou like.",
+  "userName":"User Name",
+  "alreadyAccount":"Already have an account?",
+
+
+"forgotSub":"Enter your email address and we’ll send you confirmation code to reset your password",
+"forgotNo":"Enter your Phone Number and we’ll send you confirmation code to reset your password",
+"continue":"Continue",
+"otherOption":"Other Options",
+"emailVerification":"Email verification",
+
+
+"resetPassword":"Reset Password",
+"resetSub":"Your new password must be different from the previously used password",
+"newPassword":"New Password",
+"confirmPassword":"Confirm Password",
+"verifyAccount":"Verify Account",
+"atLeaseTxt":"Must be at least 8 character",
+"samePswrd":"Both password must match",
+
+
+
+"yourLocation":"Your Location",
+"findBy":"Find by Category",
+"seeAll":"See All",
+"personal":"Personal",
+"chicken":"Chicken",
+"meat":"Meat",
+
+
+
+"newArrival":"New Arrivals",
+"freeDlvry":"Free Delivery",
+
+
+"description":"Description",
+"availableWeight":"Available Weight",
+"cutting":"Cutting",
+"package":"Packaging",
+"cartoonIce":"Cartoon - No Ice",
+"foamWithIce":"Foam With Ice",
+"orderIncludes":"The order includes",
+"head":"Head",
+"guts":"Guts",
+"included":"included",
+"notIncluded":"Not Included",
+"belly":"Belly",
+"recomended":"Recomended For You",
+"payment":"Payment",
+"itemsOrdered":"Items Ordered",
+"detailsTransaction":"Details Transaction",
+"giftDeliveryDetails":"Gift Delivery Details",
+"payWith":"Pay With:",
+"changeLocation":"Change Location",
+"deliveryLocation":"Delivery Location",
+"myCart":"My Cart",
+"apply":"Apply",
+"promoCode":"Promo Code",
+"paymentSummary":"Payment Summary",
+"addson":"Adds on",
+"totalItem":"Total Items",
+"deliveryFee":"Delivery Fee",
+"discount":"Discount",
+"total":"Total",
+"goToCheckout":"Go to Checkout",
+
+
+
+"orderInfo":"Order Information",
+"addressDetails":"Address Details",
+"flatBuilding":"Flat/Building/Street/Area",
+"emirates":"Emirates",
+"selectLocation":"Select your Location",
+"addLocation":"Add Location",
+"fullName":"Full Name",
+"enterName":"Enter Full Name",
+"mobileNo":"Mobile Number",
+"saveAddress":"Save Address",
+"notification":"Notification",
+
+
+"orders":"Orders",
+"reOrder":"Reorder",
+"rate":"Rate",
+"outDelivery":"Out for Delivery",
+"delivered":"Delivered",
+"orderId":"Order ID",
+"items":"Items",
+
+
+
+"deliverAddress":"Delivered address",
+"paymentMethod":"Payment method",
+"itemSummary":"Item Summary",
+"estimated":"Estimated",
+"confirmed":"Confirmed",
+"preparing":"Preparing",
+
+
+
+"profileSettings":"Profile Settings",
+"profile":"Profile",
+"personalData":"Personal Data",
+"settings":"Settings",
+"extraCard":"Extra Cards",
+"Support":"Support",
+"helpCenter":"Help Center",
+"deleteAccount":"Request Account Deletion",
+"AddAccount":"Add Another Account",
+"signOut":"Sign Out",
+
+
+"gender":"Gender",
+"phone":"Phone",
+"email":"Email",
+"save":"Save",
+
+
+"male":"Male",
+"feMale":"Female",
+"setting":"Settings",
+
+"pushNot":"Push Notification",
+"location":"Location",
+"language":"Language",
+"other":"Other",
+"about":"About",
+"privacy":"Privacy Policy",
+"termsCondition":"Terms and Conditions",
+"wantLogout":"Do you want to log out?",
+"cancel":"Cancel",
+"logout":"Log Out",
+"dateTime":"Pick Date & Time",
+"forgotSubModal":"Select which contact details should we use to reset your password",
+"viaSms":"Send via SMS",
+"viaEmail":"Send via Email",
+"passwordChanged":"Password Changed",
+"passSuccess":"Password changed successfully, you can login again with a new password",
+
+"searchFood":"Search Food",
+"food":"Food",
+"addToCart":"Add to Cart",
+"delivered":"Delivered",
+"DelTo":"Deliver to",
+"successMsg":"Order confirmed! Thank you for shopping with us.",
+"mutton":"Mutton",
+
+
+"recentSearches":"Recent searches",
+"delete":"Delete",
+"giftDetails":"Gift Details",
+"dubai":"Dubai",
+"message":"Message",
+
+
+"home":"Home",
+"cart":"Cart",
+
+"selectLanguage":"Select Language",
+"arabic":"Arabic",
+"english":"English (US)",
+"select":"Select",
+"provideBest":"Provide the best",
+"meatForYou":"meat for you",
+"selectGender":"Select Gender",
+
+"today":"Today",
+"yesterday":"Yesterday",
+"search":"Search",
+
+
+"name":"Name",
+"address":"Address",
+
+"applePay":"Apple Pay",
+"creditCard":"Credit Card",
+"cash":"Cash",
+
+
+"specialPromotion":"Special Promotion",
+"onlyValid":"Only valid today"
+,
+"iAgree":"I Agree with",
+"termsService":"Terms of Service",
+"and":"and",
+"privacyPolicy":"Privacy\nPolicy",
+
+
+"pickDate":"Pick Date",
+"pickTime":"Pick Time",
+
+"edit":"Edit",
+"continueShopping":"Continue Shopping",
+"favorite":"Favorite",
+"noData":"No Data Found",
+"pieces":"Pieces",
+"notOrder":"Seems like you have not ordered\nany meat yet",
+"ouch":"Ouch!",
+"findMeat":"Find Meat",
+"codeSend":"Code Send Successfully",
+
+
+"rating":"Rating",
+"rateUs":"Rate Us",
+"orderPlaces":"Your order has been placed",
+"great":"Great",
+"submit":"Submit",
+
+}

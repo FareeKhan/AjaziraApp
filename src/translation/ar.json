@@ -1,0 +1,243 @@
+{
+  "firstTitle":"لحم عالي الجودة\nيتم توصيله طازجًا",
+  "firstSubtitle":"احصل على أفضل القطع، محلية المصدر ومضمونة الطازجة إلى بابك.",
+  "secondTitle":"تسوق مخصص\nلذوقك",
+  "secondSubTitle":"قم بسهولة بتصفية القطع حسب النوع أو التفضيلات الغذائية. نوفر كل شيء من لحم البقر المغذى على العشب إلى الدجاج العضوي.",
+  "thirdTitle":"توصيل سريع\nوخيارات دفع\nسهلة",
+  "thirdSubTitle":"استمتع بالتوصيل السريع والدفع الآمن وتجربة تسوق مريحة في خطوات قليلة.",
+  "skip":"تخطي",
+  "next":"التالي",
+  "loginTitle":"تسجيل الدخول إلى\nحسابك",
+  "loginSubTitle":"يرجى تسجيل الدخول إلى حسابك",
+  "phoneNo":"رقم الهاتف",
+  "sendOtp":"إرسال رمز التحقق",
+  "notHaveAccount":"ليس لديك حساب؟",
+  "register":"تسجيل",
+  "otp":"رمز التحقق",
+  "numberVerify":"التحقق من الرقم",
+  "numberVerifySubTitle":"أدخل رمز التحقق الذي أرسلناه لك على:",
+  "notRcvOtp":"لم يصلك الرمز؟",
+  "resend":"إعادة الإرسال",
+
+  "emailAddress":"البريد الإلكتروني",
+  "enterEmail":"أدخل البريد الإلكتروني",
+  "enterUserName":"أدخل اسم المستخدم",
+  "password":"كلمة المرور",
+  "enterPassword":"أدخل كلمة المرور",
+  "forgotPassword":"نسيت كلمة المرور؟",
+  "forgotPass":"نسيت كلمة المرور",
+  "signIn":"تسجيل الدخول",
+  "orSignInWith":"أو سجل الدخول باستخدام",
+  "createNew":"إنشاء حساب جديد\nلك",
+  "createNewSub":"قم بإنشاء حساب للبحث عن الطعام\nالذي تحبه.",
+  "userName":"اسم المستخدم",
+  "alreadyAccount":"هل لديك حساب بالفعل؟",
+
+
+  "forgotSub":"أدخل بريدك الإلكتروني وسنرسل لك رمز تأكيد لإعادة تعيين كلمة المرور",
+  "forgotNo":"أدخل رقم هاتفك وسنرسل لك رمز تأكيد لإعادة تعيين كلمة المرور",
+  "continue":"متابعة",
+  "otherOption":"خيارات أخرى",
+  "emailVerification":"التحقق من البريد الإلكتروني",
+
+
+  "resetPassword":"إعادة تعيين كلمة المرور",
+  "resetSub":"يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمة المرور المستخدمة سابقًا",
+  "newPassword":"كلمة مرور جديدة",
+  "confirmPassword":"تأكيد كلمة المرور",
+  "verifyAccount":"تأكيد الحساب",
+  "atLeaseTxt":"يجب أن تكون على الأقل 8 أحرف",
+  "samePswrd":"يجب أن تتطابق كلمات المرور",
+
+
+
+  "yourLocation":"موقعك",
+  "findBy":"البحث حسب الفئة",
+  "seeAll":"عرض الكل",
+  "personal":"شخصي",
+  "chicken":"دجاج",
+  "meat":"لحم",
+
+
+
+  "newArrival":"الوصولات الجديدة",
+  "freeDlvry":"توصيل مجاني",
+
+
+  "description":"الوصف",
+  "availableWeight":"الوزن المتاح",
+  "cutting":"التقطيع",
+  "package":"التعبئة",
+  "cartoonIce":"كرتون - بدون ثلج",
+  "foamWithIce":"فوم مع ثلج",
+  "orderIncludes":"يشمل الطلب",
+  "head":"الرأس",
+  "guts":"الأحشاء",
+  "included":"مشمول",
+  "notIncluded":"غير مشمول",
+  "belly":"البطن",
+  "recomended":"موصى به لك",
+  "payment":"الدفع",
+  "itemsOrdered":"العناصر المطلوبة",
+  "detailsTransaction":"تفاصيل المعاملة",
+  "giftDeliveryDetails":"تفاصيل توصيل الهدية",
+  "payWith":"الدفع بواسطة:",
+  "changeLocation":"تغيير الموقع",
+  "deliveryLocation":"موقع التوصيل",
+  "myCart":"سلة التسوق",
+  "apply":"تطبيق",
+  "promoCode":"رمز الخصم",
+  "paymentSummary":"ملخص الدفع",
+  "addson":"إضافات",
+  "totalItem":"إجمالي العناصر",
+  "deliveryFee":"رسوم التوصيل",
+  "discount":"الخصم",
+  "total":"الإجمالي",
+  "goToCheckout":"الانتقال إلى الدفع",
+
+
+
+  "orderInfo":"معلومات الطلب",
+  "addressDetails":"تفاصيل العنوان",
+  "flatBuilding":"شقة/مبنى/شارع/منطقة",
+  "emirates":"الإمارات",
+  "selectLocation":"حدد موقعك",
+  "addLocation":"إضافة موقع",
+  "fullName":"الاسم الكامل",
+  "enterName":"أدخل الاسم الكامل",
+  "mobileNo":"رقم الهاتف المحمول",
+  "saveAddress":"حفظ العنوان",
+  "notification":"الإشعارات",
+
+
+  "orders":"الطلبات",
+  "reOrder":"إعادة الطلب",
+  "rate":"التقييم",
+  "outDelivery":"في طريقه للتوصيل",
+  "delivered":"تم التوصيل",
+  "orderId":"رقم الطلب",
+  "items":"العناصر",
+
+
+
+  "deliverAddress":"عنوان التوصيل",
+  "paymentMethod":"طريقة الدفع",
+  "itemSummary":"ملخص العناصر",
+  "estimated":"المتوقع",
+  "confirmed":"تم التأكيد",
+  "preparing":"جارٍ التحضير",
+
+
+
+  "profileSettings":"إعدادات الملف الشخصي",
+  "profile":"الملف الشخصي",
+  "personalData":"البيانات الشخصية",
+  "settings":"الإعدادات",
+  "extraCard":"بطاقات إضافية",
+  "Support":"الدعم",
+  "helpCenter":"مركز المساعدة",
+  "deleteAccount":"طلب حذف الحساب",
+  "AddAccount":"إضافة حساب آخر",
+  "signOut":"تسجيل الخروج",
+
+
+  "gender":"الجنس",
+  "phone":"الهاتف",
+  "email":"البريد الإلكتروني",
+  "save":"حفظ",
+
+
+  "male":"ذكر",
+  "feMale":"أنثى",
+  "setting":"الإعدادات",
+
+  "pushNot":"إشعارات الدفع",
+  "location":"الموقع",
+  "language":"اللغة",
+  "other":"أخرى",
+  "about":"حول",
+  "privacy":"سياسة الخصوصية",
+  "termsCondition":"الشروط والأحكام",
+  "wantLogout":"هل تريد تسجيل الخروج؟",
+  "cancel":"إلغاء",
+  "logout":"تسجيل الخروج",
+  "dateTime":"اختر التاريخ والوقت",
+  "forgotSubModal":"اختر تفاصيل الاتصال التي نستخدمها لإعادة تعيين كلمة المرور",
+  "viaSms":"إرسال عبر الرسائل النصية",
+  "viaEmail":"إرسال عبر البريد الإلكتروني",
+  "passwordChanged":"تم تغيير كلمة المرور",
+  "passSuccess":"تم تغيير كلمة المرور بنجاح، يمكنك تسجيل الدخول باستخدام كلمة المرور الجديدة",
+
+  "searchFood":"ابحث عن طعام",
+  "food":"طعام",
+  "addToCart":"أضف إلى السلة",
+  "delivered":"تم التوصيل",
+  "DelTo":"التوصيل إلى",
+  "successMsg":"تم تأكيد الطلب! شكرًا للتسوق معنا.",
+  "mutton":"لحم الضأن",
+
+
+  "recentSearches":"البحث الأخير",
+  "delete":"حذف",
+  "giftDetails":"تفاصيل الهدية",
+  "dubai":"دبي",
+  "message":"رسالة",
+
+
+  "home":"الصفحة الرئيسية",
+  "cart":"سلة التسوق",
+
+  "selectLanguage":"اختر اللغة",
+  "arabic":"العربية",
+  "english":"الإنجليزية (الولايات المتحدة)",
+  "select":"اختيار",
+  "provideBest":"نوفر الأفضل",
+"meatForYou":"لحوم لأجلك",
+"selectGender":"اختر الجنس",
+
+"today":"اليوم",
+"yesterday":"أمس",
+"search":"بحث",
+
+
+
+"name":"الاسم",
+"address":"العنوان",
+
+"applePay":"آبل باي",
+"creditCard":"بطاقة ائتمان",
+"cash":"نقدًا",
+
+"specialPromotion":"عرض خاص",
+"onlyValid":"صالحة فقط اليوم",
+
+"iAgree":"أوافق على",
+"termsService":"شروط الخدمة",
+"and":"و",
+"privacyPolicy":"سياسة الخصوصية",
+
+"pickDate":"اختر التاريخ",
+"pickTime":"اختر الوقت",
+
+"edit":"تعديل",
+"continueShopping":"متابعة التسوق",
+"favorite":"المفضلة",
+"noData":"لا توجد بيانات",
+"pieces":"قطع",
+
+"notOrder":"يبدو أنك لم تطلب\nأي لحم بعد",
+"ouch":"آخ!",
+"findMeat":"ابحث عن اللحم",
+"codeSend":"تم إرسال الرمز بنجاح",
+
+"rating":"التقييم",
+"rateUs":"قيمنا",
+"orderPlaces":"تم تقديم طلبك",
+"great":"رائع",
+"submit":"إرسال",
+
+
+
+
+
+}
