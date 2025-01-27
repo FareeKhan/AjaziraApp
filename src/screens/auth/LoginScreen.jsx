@@ -13,16 +13,16 @@ import ForgotModal from '../../components/ForgotModal'
 import { useDispatch } from 'react-redux'
 import { login } from '../../redux/Auth'
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated'
+import CustomToast from '../../components/CustomToast'
 
 const LoginScreen = ({ navigation }) => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
-    const [isShowPassword, setIsShowPassword] = useState(false)
+    const [isShowPassword, setIsShowPassword] = useState(true)
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedItem, setSelectedItem] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
 
 
     const onPressModalContinue = () => {
@@ -32,9 +32,8 @@ const LoginScreen = ({ navigation }) => {
         })
     }
 
-
     const onPressSignIn = () => {
-
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const tokenGenerate = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
         let token = ''
@@ -43,10 +42,19 @@ const LoginScreen = ({ navigation }) => {
         }
         const userId = Math.floor(Math.random() * 10)
 
+        if (email == '' ) {
+            CustomToast(t("pleaseEnterMail"), "danger")
 
-        if (email == '' || password == '') {
-            alert('Please Fill the Fields')
-        } else {
+        }else if(!emailRegex?.test(email)){
+            CustomToast(t("emailIsInvalid"), "danger")
+
+        }
+        else if( password == ''){
+            CustomToast(t("pleaseEnterPassword"), "danger")
+
+        }
+        
+        else {
             dispatch(login({ email, token, userId }))
         }
     }

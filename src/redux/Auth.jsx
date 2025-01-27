@@ -4,7 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     loginData:{},
     isLanguage:"en",
-    isOnBoarding:false
+    isOnBoarding:false,
+    IsShowImage:true
 }
 
 const auth = createSlice({
@@ -25,6 +26,9 @@ const auth = createSlice({
             const {selectedLanguage} = action.payload 
             state.isLanguage =selectedLanguage
         },
+        modalImage :(state,action)=>{
+            state.IsShowImage =false
+        },
         logout:(state,action)=>{
             state.loginData = {};
         }
@@ -33,5 +37,5 @@ const auth = createSlice({
 });
 
 
-export const { onBoarding,login,logout,language } = auth.actions;
+export const { onBoarding,login,modalImage,logout,language } = auth.actions;
 export default auth.reducer;

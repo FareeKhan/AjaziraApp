@@ -60,70 +60,86 @@ const MyCartScreen = ({ navigation }) => {
 
     const renderItem = ({ item, index }) => {
         return (
-            <View style={styles.cartProductsContainer}>
-                <TouchableOpacity style={{ justifyContent: "center" }}>
-                    {/* <Feather name={'square'} color={colors.primary} size={22} /> */}
-                    <Ionicons name={'checkbox'} color={colors.secondary} size={22} />
-                </TouchableOpacity>
+            <View>
 
 
-                <Image source={{ uri: MeatImage }} style={{ width: "30%", height: 90, marginLeft: 7 }} borderRadius={15} />
+                <View style={styles.cartProductsContainer}>
+                    {/* <Text style={{color:"red"}}>{item?.catName}</Text> */}
+                    <TouchableOpacity style={{ justifyContent: "center" }}>
+                        {/* <Feather name={'square'} color={colors.primary} size={22} /> */}
+                        <Ionicons name={'checkbox'} color={colors.secondary} size={22} />
+                    </TouchableOpacity>
+
+                    <Image source={{ uri: MeatImage }} style={{ width: "30%", height: 90, marginLeft: 7 }} borderRadius={15} />
+
+                    <View style={{ width: "60%" }}>
+                        <Text style={styles.productTitle}>Raw Gazelle</Text>
+                        <Text style={styles.price}>AED {item?.price}</Text>
+                        <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 8 }}>
+                            <View style={styles.incDecContainer}>
+                                <TouchableOpacity onPress={() => onPressDecrement(item?.id)} style={styles.counterBox}>
+                                    <Octicons name={'dash'} size={15} color={colors.black} />
+                                </TouchableOpacity>
+
+                                <Text style={styles.counterTxt}>{item?.counter}</Text>
+
+                                <TouchableOpacity onPress={() => onPressIncrement(item?.id)} style={styles.counterBox}>
+                                    <Octicons name={'plus'} size={15} color={colors.black} />
+                                </TouchableOpacity>
+                            </View>
+
+                            <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 12 }}>
+                                <TouchableOpacity  >
+                                    <Text style={styles.editTxt}>{t("edit")}</Text>
+                                </TouchableOpacity>
 
 
+                                <View style={styles.borderLine} />
 
-                <View style={{ width: "60%" }}>
-                    <Text style={styles.productTitle}>Raw Gazelle</Text>
-                    <Text style={styles.price}>AED {item?.price}</Text>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 8 }}>
-                        <View style={styles.incDecContainer}>
-                            <TouchableOpacity onPress={() => onPressDecrement(item?.id)} style={styles.counterBox}>
-                                <Octicons name={'dash'} size={15} color={colors.black} />
-                            </TouchableOpacity>
+                                <TouchableOpacity onPress={() => productDelete(item?.id)} >
+                                    <Text style={styles.deleteTxt}>{t("delete")}</Text>
 
-                            <Text style={styles.counterTxt}>{item?.counter}</Text>
+                                </TouchableOpacity>
+                            </View>
 
-                            <TouchableOpacity onPress={() => onPressIncrement(item?.id)} style={styles.counterBox}>
-                                <Octicons name={'plus'} size={15} color={colors.black} />
-                            </TouchableOpacity>
                         </View>
-
-
-
-
-
-                        <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 12 }}>
-                            <TouchableOpacity  >
-                                <Text style={{ fontSize: 10, fontFamily: fonts.regular, color: colors.gray1 }}>{t("edit")}</Text>
-                            </TouchableOpacity>
-
-
-                            <View style={{ height: 20, width: 1, backgroundColor: colors.gray, marginLeft: 10, marginRight: 5, bottom: 3 }} />
-
-                            <TouchableOpacity onPress={() => productDelete(item?.id)} >
-                                <Text style={{ fontSize: 10, fontFamily: fonts.regular, color: colors.red }}>{t("delete")}</Text>
-
-                            </TouchableOpacity>
-                        </View>
-
-
-
-
                     </View>
+
+
+
+
                 </View>
-
-
-
-
             </View>
+
         )
     }
 
 
-    if(cartProducts?.length == 0){
-        return(
-           <EmptyCardScreen />
+
+    // 
+
+
+
+    const groupedProducts = Object.entries(
+        cartProducts.reduce((acc, product) => {
+            const category = product.catName || t('other');
+            if (!acc[category]) {
+                acc[category] = [];
+            }
+            acc[category].push(product);
+            return acc;
+        }, {})
+    );
+
+
+
+    if (cartProducts?.length == 0) {
+        return (
+            <EmptyCardScreen />
         )
     }
+
+    console.log('groupedProducts', groupedProducts)
 
 
     return (
@@ -161,7 +177,7 @@ const MyCartScreen = ({ navigation }) => {
                     <TextInput
                         placeholder={t("promoCode") + "..."}
                         style={styles.inputTxt}
-                        placeholderTextColor={{ color: colors.gray1 }}
+                        placeholderTextColor={colors.gray1}
 
                     />
 
@@ -182,9 +198,38 @@ const MyCartScreen = ({ navigation }) => {
 
 
                     <FlatList
-                        data={cartProducts}
+                        // data={cartProducts}
+                        data={groupedProducts}
                         keyExtractor={(item, index) => index?.toString()}
-                        renderItem={renderItem}
+                        // renderItem={renderItem}
+                        renderItem={({ item, index }) => {
+                            const [category, products] = item;
+                            return (
+                                <View>
+                                    {
+                                        category &&
+                                        <View>
+                                            <View style={{
+                                                backgroundColor: colors.primary, alignSelf: "baseline",
+                                                borderTopRightRadius: 10,
+                                                borderBottomRightRadius: 10,
+                                                marginBottom: 10
+                                            }}>
+                                                <Text style={{ color: colors.white, fontSize: 16, fontFamily: fonts.semiBold, paddingHorizontal: 15, paddingVertical: 5 }}>{category}</Text>
+                                            </View>
+
+                                            {/* <View style={{borderBottomWidth:1}} /> */}
+                                        </View>
+                                    }
+
+                                    <FlatList
+                                        data={products}
+                                        key={(item, index) => index?.toString()}
+                                        renderItem={renderItem}
+                                    />
+                                </View>
+                            )
+                        }}
 
 
                     />
@@ -332,14 +377,14 @@ const styles = StyleSheet.create({
         // paddingTop: 13,
         paddingBottom: 2,
         marginLeft: 10,
-        textAlign:"left"
+        textAlign: "left"
     },
     price: {
         color: colors.secondary,
         fontFamily: fonts.bold,
         paddingTop: 10,
         paddingBottom: 2,
-        textAlign:"left",
+        textAlign: "left",
         marginLeft: 20,
     },
     incDecContainer: {
@@ -353,7 +398,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: fonts.medium,
         width: 40,
-        textAlign: "center"
+        textAlign: "center",
+        color: colors.black
     },
     counterBox: {
         width: 23,
@@ -387,6 +433,20 @@ const styles = StyleSheet.create({
         fontFamily: fonts.semiBold
 
     },
+    editTxt: {
+        fontSize: 10,
+        fontFamily: fonts.regular,
+        color: colors.gray1
+    },
+    borderLine: {
+        height: 20,
+        width: 1,
+        backgroundColor: colors.gray,
+        marginLeft: 10,
+        marginRight: 5,
+        bottom: 3
+    },
+    deleteTxt: { fontSize: 10, fontFamily: fonts.regular, color: colors.red }
 
 
 })

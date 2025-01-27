@@ -55,8 +55,6 @@ const PersonalData = () => {
 
 <Animated.View entering={FadeInDown.delay(300)}>
 
-
-
       <View style={{ alignSelf: "center", marginVertical: 30 }}>
         <Image borderRadius={50} style={styles.imgStyle} source={{ uri: image }} />
         <TouchableOpacity onPress={() => takeImageFromGallery()} style={styles.whitePlusBg}>
@@ -64,15 +62,10 @@ const PersonalData = () => {
         </TouchableOpacity>
       </View>
 
-
-
-
       <LabelInput
         label={t("fullName")}
         placeholder={t("enterName")}
       />
-
-
 
       <Text style={[styles.label, styles.inputStyle]}>{t("gender")}</Text>
       <TouchableOpacity onPress={() => setIsGender(!isGender)} style={styles.genderBox}>
@@ -99,13 +92,11 @@ const PersonalData = () => {
           }
         </View>}
 
-
-
-
       <LabelInput
         label={t("phone")}
         placeholder={"+971 55 123123123"}
         style={styles.inputStyle}
+        keyboardType='number-pad'
       />
 
       <LabelInput
@@ -113,9 +104,6 @@ const PersonalData = () => {
         placeholder={t("enterEmail")}
         style={styles.inputStyle}
       />
-
-
-
 
       <CustomButton
         title={t("save")}

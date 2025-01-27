@@ -101,9 +101,9 @@ const status = 1
                 <View style={{ flexDirection: "row", gap: 10 }}>
                     <View style={styles.applePayCard}>
                         <AntDesign name={'apple1'} color={colors.black} size={13} />
-                        <Text style={{ fontSize: 10, fontFamily: fonts.medium }}>Pay</Text>
+                        <Text style={{ fontSize: 10, fontFamily: fonts.medium ,color:colors.black}}>Pay</Text>
                     </View>
-                    <Text>Apple Pay</Text>
+                    <Text style={{color:colors.black,fontFamily:fonts.regular}}>{t('applePay')}</Text>
                 </View>
 
 
@@ -173,7 +173,8 @@ const styles = StyleSheet.create({
     title: {
         marginBottom: 10,
         fontSize: 15,
-        fontFamily: fonts.semiBold
+        fontFamily: fonts.semiBold,
+        color:colors.black
     },
     price: {
         fontSize: 15,

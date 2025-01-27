@@ -64,8 +64,6 @@ const ProfileScreen = ({ navigation }) => {
     return (
         <ScreenView  >
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100 }}>
-
-
                 <Text style={styles.title}>{t("profileSettings")}</Text>
                 <View style={styles.profileImgContainer}>
                     <View style={{ width: "65%" }}>
@@ -183,7 +181,7 @@ const ProfileScreen = ({ navigation }) => {
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
 
-                        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: "60%", alignSelf: "flex-end" }}>
+                        <View style={{ flexDirection: I18nManager.isRTL? "row-reverse": "row", alignItems: "center", justifyContent: "space-between", width: "65%", alignSelf:I18nManager.isRTL?"flex-start" :  "flex-end" }}>
                             <Text style={{ fontSize: 17, fontFamily: fonts.medium, color: colors.black }}>{t("signOut")}</Text>
                             <TouchableOpacity onPress={() => setModalVisible(false)}>
                                 <AntDesign name={'close'} color={colors.black} size={20} />

@@ -11,7 +11,7 @@ import CustomButton from './CustomButton';
 import { useNavigation } from '@react-navigation/native';
 
 
-const ForgotModal = ({modalVisible,setModalVisible,selectedItem,setSelectedItem,onPress}) => {
+const ForgotModal = ({ modalVisible, setModalVisible, selectedItem, setSelectedItem, onPress }) => {
   const { t } = useTranslation(t)
 
 
@@ -25,7 +25,7 @@ const ForgotModal = ({modalVisible,setModalVisible,selectedItem,setSelectedItem,
           setModalVisible(!modalVisible);
         }}>
         <View style={styles.centeredView}>
-          <TouchableOpacity activeOpacity={1} onPress={()=> setModalVisible(false)} style={{flex:1}}>
+          <TouchableOpacity activeOpacity={1} onPress={() => setModalVisible(false)} style={{ flex: 1 }}>
           </TouchableOpacity>
           <View style={styles.modalView}>
 
@@ -35,17 +35,17 @@ const ForgotModal = ({modalVisible,setModalVisible,selectedItem,setSelectedItem,
             <ScreenTitle title={t('forgotPassword')} subTitle={t('forgotSubModal')} />
 
 
-            <TouchableOpacity onPress={()=>setSelectedItem("sms")} style={[styles.modalContainer, { marginTop: 30 }, selectedItem == 'sms' && {borderWidth:1,borderColor:colors.primary}]}>
+            <TouchableOpacity onPress={() => setSelectedItem("sms")} style={[styles.modalContainer, { marginTop: 30 }, selectedItem == 'sms' && { borderWidth: 1, borderColor: colors.primary }]}>
               <View style={styles.iconBox}>
                 <MaterialIcons name={'phone-in-talk'} color={colors.black} size={20} />
               </View>
-              <View style={{marginTop:-5}}>
+              <View style={{ marginTop: -5 }}>
                 <Text style={styles.sms}>{t('viaSms')}</Text>
                 <Text style={styles.value}>+12 8347 2838 28</Text>
               </View>
               {
-                selectedItem == 'sms'&&
-              <Ionicons name={'checkmark-circle'} color={colors.secondary} size={20} style={{ marginLeft: "auto" }} />
+                selectedItem == 'sms' &&
+                <Ionicons name={'checkmark-circle'} color={colors.secondary} size={20} style={{ marginLeft: "auto" }} />
 
 
               }
@@ -53,19 +53,18 @@ const ForgotModal = ({modalVisible,setModalVisible,selectedItem,setSelectedItem,
 
 
 
-            <TouchableOpacity onPress={()=>setSelectedItem("mail")} style={[styles.modalContainer,  selectedItem == 'mail' && {borderWidth:1,borderColor:colors.primary}]}>
+            <TouchableOpacity onPress={() => setSelectedItem("mail")} style={[styles.modalContainer, selectedItem == 'mail' && { borderWidth: 1, borderColor: colors.primary }]}>
 
               <View style={styles.iconBox}>
                 <MaterialIcons name={'mail'} color={colors.black} size={20} />
               </View>
-              <View style={{marginTop:-5}}>
+              <View style={{ marginTop: -5 }}>
                 <Text style={styles.sms}>{t('viaEmail')}</Text>
                 <Text style={styles.value}>abc@gmail.com</Text>
               </View>
               {
-                selectedItem == 'mail'&&
-              <Ionicons name={'checkmark-circle'} color={colors.secondary} size={20} style={{ marginLeft: "auto" }} />
-
+                selectedItem == 'mail' &&
+                <Ionicons name={'checkmark-circle'} color={colors.secondary} size={20} style={{ marginLeft: "auto" }} />
 
               }
             </TouchableOpacity>
@@ -75,7 +74,6 @@ const ForgotModal = ({modalVisible,setModalVisible,selectedItem,setSelectedItem,
               title={t('continue')}
               btnStyle={{ marginTop: 10 }}
               onPress={onPress}
-
             />
 
           </View>
@@ -89,12 +87,12 @@ const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: 'flex-end',
-    backgroundColor: "#00000030"
+    backgroundColor: "#00000090"
   },
   modalView: {
     backgroundColor: "#e4e4e4",
     borderRadius: 20,
-    paddingHorizontal: 35,
+    paddingHorizontal: 20,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -146,9 +144,9 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginBottom: 15
   },
-  value:{
-    color:colors.black,
-    fontFamily:fonts.regular
+  value: {
+    color: colors.black,
+    fontFamily: fonts.regular
   }
 });
 

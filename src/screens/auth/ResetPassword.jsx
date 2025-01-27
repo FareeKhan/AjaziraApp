@@ -9,8 +9,12 @@ import { fonts } from '../../constant/fonts'
 import CustomButton from '../../components/CustomButton'
 import LabelInput from '../../components/LabelInput'
 import Success from '../../assets/svg/succes.svg'
+import CustomToast from '../../components/CustomToast'
 
-const ResetPassword = ({navigation}) => {
+const ResetPassword = ({ navigation }) => {
+    const [newPassword, setNewPassword] = useState('')
+    const [confirmNewPassword, setConfirmNewPassword] = useState('')
+
     const [isShowPassword, setIsShowPassword] = useState(true)
     const [isConfirmPassword, setIsConfirmPassword] = useState(true)
     const [modalVisible, setModalVisible] = useState(false);
@@ -18,9 +22,20 @@ const ResetPassword = ({navigation}) => {
 
 
 
-    const onPressModalBtn = ()=>{
-       setModalVisible(false)
-       navigation.navigate("LoginScreen")
+    const onPressModalBtn = () => {
+        setModalVisible(false)
+        navigation.navigate("LoginScreen")
+    }
+
+    const onPressVerifyAccount = () => {
+        if (newPassword == '' || confirmNewPassword == '') {
+            CustomToast(t('FillField', 'danger'))
+        } else if (newPassword !== confirmNewPassword) {
+            CustomToast(t('passwordNotMatch', 'warning'))
+
+        } else {
+            setModalVisible(true)
+        }
     }
 
 
@@ -45,9 +60,10 @@ const ResetPassword = ({navigation}) => {
                         secureTextEntry={isShowPassword}
                         onPressEye={() => setIsShowPassword(!isShowPassword)}
                         isShow={isShowPassword}
+                        value={newPassword}
+                        onChangeText={setNewPassword}
                     />
                     <Text style={styles.safetyTxt}>{t('atLeaseTxt')}</Text>
-
 
                     <LabelInput
                         label={t('confirmPassword')}
@@ -56,6 +72,8 @@ const ResetPassword = ({navigation}) => {
                         onPressEye={() => setIsConfirmPassword(!isConfirmPassword)}
                         isShow={isConfirmPassword}
                         secureTextEntry={isConfirmPassword}
+                        value={confirmNewPassword}
+                        onChangeText={setConfirmNewPassword}
                     />
                     <Text style={styles.safetyTxt}>{t('samePswrd')}</Text>
 
@@ -64,7 +82,7 @@ const ResetPassword = ({navigation}) => {
                         <CustomButton
                             title={t('verifyAccount')}
                             btnStyle={{ marginBottom: 18 }}
-                            onPress={()=>setModalVisible(true)}
+                            onPress={onPressVerifyAccount}
                         />
                     </View>
 
@@ -74,15 +92,11 @@ const ResetPassword = ({navigation}) => {
 
 
 
-
-
-
-
             <View>
                 <Modal
                     animationType="slide"
                     transparent={true}
-                      visible={modalVisible}
+                    visible={modalVisible}
                     onRequestClose={() => {
                         setModalVisible(!modalVisible);
                     }}>
@@ -140,7 +154,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         color: colors.gray1,
         fontSize: 12,
-        fontFamily:fonts.regular
+        fontFamily: fonts.regular
     },
     centeredView: {
         flex: 1,
@@ -164,5 +178,5 @@ const styles = StyleSheet.create({
         elevation: 5,
         paddingBottom: 30
     },
- 
+
 })

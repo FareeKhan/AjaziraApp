@@ -1,5 +1,5 @@
 import { Dimensions, I18nManager, Image, ImageBackground, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import StatusBarColor from '../../components/StatusBarColor'
 import Entypo from 'react-native-vector-icons/Entypo'
 import { colors } from '../../constant/colors'
@@ -14,160 +14,134 @@ import CustomLinearGradient from '../../components/CustomLinearGradient'
 import ProductDataCard from '../../components/ProductDataCard'
 import CategoriesComp from '../../components/CategoriesComp'
 import Animated, { FadeInDown } from 'react-native-reanimated'
+import ModalImageRender from '../../components/ModalImageRender'
+import { useDispatch, useSelector } from 'react-redux'
+import { modalImage } from '../../redux/Auth'
+
 
 
 const HomeScreen = ({ navigation }) => {
+    const dispatch = useDispatch()
+    const modalVisible = useSelector((state)=>state.auth.IsShowImage)
+
+
     const { t } = useTranslation()
     const catData = categoryData(t)
     const products = productData(t)
     const [selectedItem, setSelectedItem] = useState('')
+    // const [modalVisible, setModalVisible] = useState(imageState);
 
-    const renderItem = ({ item, index }) => {
-        return (
-            <View style={[styles.catStyleContainer, { marginRight: 26 }]}>
-                <Image source={item?.image} style={{ width: 60, height: 50, marginBottom: 20 }} />
-                <Text style={styles.catTxt}>{item?.title}</Text>
-            </View>
-        )
-    }
+    // useEffect(() => {
+    //     setModalVisible(imageState)
+    // }, [imageState])
 
 
     const onProductPress = () => {
         navigation.navigate("ProductDetails")
     }
 
+    onPressCross = () => {
+        dispatch(modalImage(false))
+    }
 
     return (
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
-            <StatusBarColor />
+        <View style={{ flex: 1 }}>
+
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
+                <StatusBarColor />
+
+                {/* ******* ImageSection ******* */}
+                <ImageBackground style={styles.imgContainer} source={require('../../assets/meetBg.png')}>
+                    <View style={{ paddingHorizontal: 15 }}>
+                        <View style={styles.innerImage}>
+                            <View style={styles.leftBox}>
+                                <Text style={styles.location}>{t('yourLocation')}</Text>
+                                <Entypo name='chevron-small-down' color={colors.white} size={22} />
+                            </View>
 
 
-            {/* ******* ImageSection ******* */}
-            <ImageBackground style={styles.imgContainer} source={require('../../assets/meetBg.png')}>
-                <View style={{ paddingHorizontal: 15 }}>
-                    <View style={styles.innerImage}>
-                        <View style={styles.leftBox}>
-                            <Text style={styles.location}>{t('yourLocation')}</Text>
-                            <Entypo name='chevron-small-down' color={colors.white} size={22} />
+                            <View style={[styles.leftBox, { gap: 15 }]}>
+                                <TouchableOpacity onPress={() => navigation.navigate("SearchScreen")} style={styles.searchBox}>
+                                    <Feather name={'search'} size={20} color={colors.white} />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => navigation.navigate("PersonalData")} style={[styles.searchBox, { backgroundColor: colors.white }]}>
+                                    <Image borderRadius={50} style={{ width: 30, height: 30 }} source={require('../../assets/smallLogo.png')} />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View style={styles.locationContainer}>
+                            <SimpleLineIcons name={'location-pin'} size={22} color={colors.white} />
+                            <Text style={styles.locationTxt}>{t("dubai")}</Text>
                         </View>
 
-
-                        <View style={[styles.leftBox, { gap: 15 }]}>
-                            <TouchableOpacity onPress={() => navigation.navigate("SearchScreen")} style={styles.searchBox}>
-                                <Feather name={'search'} size={20} color={colors.white} />
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={()=>navigation.navigate("PersonalData")} style={[styles.searchBox, { backgroundColor: colors.white }]}>
-                                <Image borderRadius={50} style={{ width: 30, height: 30 }} source={require('../../assets/smallLogo.png')} />
-                            </TouchableOpacity>
+                        <View style={{ marginTop: 40 }}>
+                            <Text style={styles.imgBottomTxt}>{t("provideBest")}</Text>
+                            <Text style={styles.imgBottomTxt}>{t("meatForYou")}</Text>
                         </View>
                     </View>
-                    <View style={styles.locationContainer}>
-                        <SimpleLineIcons name={'location-pin'} size={22} color={colors.white} />
-                        <Text style={styles.locationTxt}>{t("dubai")}</Text>
-                    </View>
+                </ImageBackground>
+                <Animated.View entering={FadeInDown.delay(300)}>
 
-                    <View style={{ marginTop: 40 }}>
-                        <Text style={styles.imgBottomTxt}>{t("provideBest")}</Text>
-                        <Text style={styles.imgBottomTxt}>{t("meatForYou")}</Text>
-                    </View>
-                </View>
-            </ImageBackground>
+                    {/* ******* Find By Category Section ******* */}
+
+                    <CustomLinearGradient style={{ height: 210 }}>
+                        <View style={{ paddingTop: 25 }}>
+                            <SectionTitleSubTitle
+                                title={t('findBy')}
+                                subTitle={t('seeAll')}
+                            />
+
+                            <CategoriesComp
+                                selectedItem={selectedItem}
+                                setSelectedItem={setSelectedItem}
+                            />
+                        </View>
+                    </CustomLinearGradient>
 
 
-            <Animated.View entering={FadeInDown.delay(300)}>
+                    {/* *******  Carousels ******* */}
+                    <Carousel />
 
 
-
-            {/* ******* Find By Category Section ******* */}
-
-            <CustomLinearGradient style={{ height: 210 }}>
-
-                <View style={{ paddingTop: 25 }}>
-                    <SectionTitleSubTitle
-                        title={t('findBy')}
-                        subTitle={t('seeAll')}
+                    {/* *******  Products Card ******* */}
+                    <ProductDataCard
+                        data={products}
+                        flatListStyle={{ backgroundColor: colors.gray5 }}
+                        onProductPress={onProductPress}
                     />
 
-                    {/* <FlatList
-                        data={catData}
-                        horizontal
-                        keyExtractor={(item, index) => index?.toString()}
-                        contentContainerStyle={{ paddingLeft: 15, marginTop: 10 }}
-                        renderItem={renderItem}
-                        showsHorizontalScrollIndicator={false}
-                    /> */}
 
-                    <CategoriesComp
-                        selectedItem={selectedItem}
-                        setSelectedItem={setSelectedItem}
-                    />
+                    {/* *********** Banner ********** */}
+                    <ImageBackground style={styles.bgImage} source={{ uri: bannerImage }}  >
+                        <View style={{ left: -20, alignSelf: I18nManager.isRTL ? "flex-end" : "flex-start" }}>
+                            <Image style={styles.bannerInnerImag} source={{ uri: innerBannerImage }} />
+                        </View>
+                    </ImageBackground>
 
-                </View>
+                    {/* *********** New Arrival ********** */}
+                    <CustomLinearGradient>
+                        <SectionTitleSubTitle
+                            title={t('newArrival')}
+                            style={{ marginTop: 15, marginBottom: 20 }}
+                        />
 
+                        <ProductDataCard
+                            data={products}
+                        />
+                    </CustomLinearGradient>
 
+                </Animated.View>
 
-
-
-            </CustomLinearGradient>
-
-
-
-
-            {/* *******  Carousels ******* */}
-            <Carousel />
-
-
-            {/* *******  Products Card ******* */}
-            <ProductDataCard
-                data={products}
-                flatListStyle={{ backgroundColor: colors.gray5 }}
-                onProductPress={onProductPress}
-            />
-
-
-            {/* *********** Banner ********** */}
-            <ImageBackground style={styles.bgImage} source={{ uri: bannerImage }}  >
-                <View style={{ left:-20,alignSelf: I18nManager.isRTL ? "flex-end" : "flex-start" }}>
-                    <Image style={styles.bannerInnerImag} source={{ uri: innerBannerImage }} />
-
-                </View>
-            </ImageBackground>
-
-
-            {/* *********** New Arrival ********** */}
-            <CustomLinearGradient>
-
-                <SectionTitleSubTitle
-                    title={t('newArrival')}
-                    style={{ marginTop: 15, marginBottom: 20 }}
+                <ModalImageRender
+                    modalVisible={modalVisible}
+                    onPress={onPressCross}
                 />
 
-                {/* <FlatList
-                    data={products}
-                    keyExtractor={(item, index) => index?.toString()}
-                    numColumns={2}
-                    columnWrapperStyle={{ justifyContent: "space-between" }}
-                    contentContainerStyle={{ paddingHorizontal: 15 }}
-                    style={{ paddingBottom: 15 }}
-                    renderItem={({ item, index }) => {
-                        return (
-                            <ProductCard item={item} />
-                        )
-                    }}
-
-                /> */}
-
-                <ProductDataCard
-                    data={products}
-
-                />
-            </CustomLinearGradient>
-
-            </Animated.View>
+            </ScrollView>
 
 
+        </View>
 
-        </ScrollView>
     )
 }
 
@@ -248,7 +222,7 @@ const styles = StyleSheet.create({
         width: 150,
         height: 150,
         top: 10,
-        left: I18nManager.isRTL?  15 :30,
+        left: I18nManager.isRTL ? 15 : 30,
     }
 
 

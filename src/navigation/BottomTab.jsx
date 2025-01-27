@@ -23,6 +23,7 @@ import { useTranslation } from 'react-i18next';
 import { fonts } from '../constant/fonts';
 import FavoriteScreen from '../screens/userProfile/FavoriteScreen';
 import RatingScreen from '../screens/userProfile/RatingScreen';
+import CategoryScreenProduct from '../screens/userProfile/CategoryScreenProduct';
 
 LogBox.ignoreAllLogs()
 
@@ -42,6 +43,7 @@ export const StackNavigation = () => {
             <Stack.Screen name="SearchScreen" component={SearchScreen} />
             <Stack.Screen name="FavoriteScreen" component={FavoriteScreen} />
             <Stack.Screen name="RatingScreen" component={RatingScreen} />
+            <Stack.Screen name="CategoryScreenProduct" component={CategoryScreenProduct} />
         </Stack.Navigator>
     )
 }
@@ -79,9 +81,11 @@ export const BottomTab = () => {
                 component={HomeScreen}
                 
                 options={{
+                    
                     tabBarLabel:t("home"),
                     tabBarLabelStyle: {
                         fontFamily:fonts.regular,
+
                         
                     },
                     tabBarIcon: ({focused}) => {

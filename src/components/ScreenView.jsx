@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         backgroundColor: colors.white,
-        paddingTop: Platform.OS == 'ios' ? 55 : 20,
+        paddingTop: Platform.OS == 'ios' ? 55 : 25,
         paddingHorizontal: 20
     }
 })

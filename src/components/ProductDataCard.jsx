@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { productFavorite, removeFavorite } from '../redux/AddFavorite'
 import EmptyComponent from './EmptyComponent'
 
-const ProductDataCard = ({ data, flatListStyle, flatListContainerStyle }) => {
+const ProductDataCard = ({ data, flatListStyle, flatListContainerStyle,catName }) => {
 const navigation =useNavigation()
     const dispatch = useDispatch()
     const favoriteList = useSelector((state) => state?.favorite?.AddInFavorite)
@@ -37,9 +37,12 @@ const navigation =useNavigation()
         }
     }
 
+console.log('dasdasd',catName)
 
     const onProductPress = () => {
-        navigation.navigate("ProductDetails")
+        navigation.navigate("ProductDetails",{
+            catName:catName
+        })
     }
 
     const renderItem = ({ item, index, }) => {
@@ -104,7 +107,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 8,
         marginBottom: 12,
-        width: "48%"
+        width: "48%",
     },
     heartBox: {
         width: 35,

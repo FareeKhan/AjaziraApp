@@ -238,6 +238,19 @@
 
 
 
+"enterPhoneNo": "يرجى إدخال رقم الهاتف",
+"phoneNotCorrect": "رقم الهاتف غير صحيح",
+"pleaseEnterMail": "يرجى إدخال البريد الإلكتروني",
+"pleaseEnterPassword": "يرجى إدخال كلمة المرور",
+"pleaseEnterUserName": "يرجى إدخال اسم المستخدم",
+"accountCreatedSuccessfully": "تم إنشاء الحساب بنجاح",
+"emailIsInvalid": "البريد الإلكتروني غير صالح",
+"FillField": "يرجى ملء الحقل",
+"passwordNotMatch": "كلمات المرور غير متطابقة. يرجى المحاولة مرة أخرى.",
+"confirm": "تأكيد"
+
+
+
 
 
 }

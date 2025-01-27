@@ -17,14 +17,17 @@ import { generateDatesArray } from '../../constant/helper'
 import MapView, { Marker } from 'react-native-maps'
 import Fontisto from 'react-native-vector-icons/Fontisto'
 import SuccessFullModal from '../../components/SuccessFullModal'
+import { useSelector } from 'react-redux'
 
 
 const PaymentScreen = ({ navigation }) => {
+  const AddedProductInCart = useSelector((state) => state.cart.cartProducts)
+
   const { t } = useTranslation()
   const cartProducts = CartData(t)
   const paymentData = PaymentMethod(t)
   const TimeData = timeData(t)
-  const [selectedPayment, setSelectedPayment] = useState('')
+  const [selectedPayment, setSelectedPayment] = useState(1)
   const [modalVisible, setModalVisible] = useState(false);
   const [selectDate, setSelectedData] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
@@ -116,7 +119,7 @@ const PaymentScreen = ({ navigation }) => {
   }
 
 
-
+  const totalPrice = AddedProductInCart?.reduce((total, item) => total + item?.price, 0)
 
   return (
     <ScreenView >
@@ -129,7 +132,7 @@ const PaymentScreen = ({ navigation }) => {
 
         <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.dataAndtime}>
           <AntDesign name={'clockcircleo'} color={colors.secondary} size={15} />
-          <Text style={styles.timeTxt}>{selectDate ?selectDate : t("pickDate")}, {selectedTime?selectedTime : t("pickTime") }  </Text>
+          <Text style={styles.timeTxt}>{selectDate ? selectDate : t("pickDate")}, {selectedTime ? selectedTime : t("pickTime")}  </Text>
         </TouchableOpacity>
 
         <SectionTitleSubTitle
@@ -140,40 +143,36 @@ const PaymentScreen = ({ navigation }) => {
         {/* ***********  ProductCarts    ******** */}
 
         <CartProducts
-          data={cartProducts}
+          data={AddedProductInCart}
         />
 
         {/* ***********  Details Transcation    ******** */}
         <SectionTitleSubTitle
           title={t("detailsTransaction")}
           style={{ marginVertical: 15, paddingHorizontal: 0 }}
-
         />
 
 
         <KeyValue
           leftValue={'Raw Gazelle'}
-          rightValue={'AED 180.000'}
+          rightValue={'AED 0.000'}
 
         />
 
         <KeyValue
           leftValue={'Tax 10%'}
-          rightValue={'AED 80.390'}
+          rightValue={'AED 0.390'}
 
         />
 
         <KeyValue
           leftValue={'Total Price'}
-          rightValue={'AED 100.000'}
+          rightValue={`AED ${totalPrice?.toFixed(2)}`}
           rightStyle={{ color: colors.secondary, fontFamily: fonts.bold }}
 
         />
 
-
-
         {/* ******************  Map Section     *************** */}
-
 
         <View style={styles.deliverBox}>
           <Text style={styles.delvryTxt}>{t("DelTo")}:</Text>
@@ -184,9 +183,6 @@ const PaymentScreen = ({ navigation }) => {
 
           </View>
         </View>
-
-
-
 
         <MapView
           style={{ width: "80%", height: 150, marginTop: 5, marginBottom: 20, alignSelf: "center" }}
@@ -264,7 +260,7 @@ const PaymentScreen = ({ navigation }) => {
                     item?.id == 1 ?
                       <View style={styles.applePayCard}>
                         {item?.icon}
-                        <Text style={{ fontSize: 10, fontFamily: fonts.medium }}>Pay</Text>
+                        <Text style={{ fontSize: 10, fontFamily: fonts.medium, color: colors.black }}>Pay</Text>
                       </View>
 
                       :
@@ -284,12 +280,25 @@ const PaymentScreen = ({ navigation }) => {
 
         {/* Modal Date Picker and Time Picker */}
 
-        <CustomButton
-          onPress={() => setSuccessFullModal(true)}
-          title={'Pay'}
-          btnStyle={styles.applePayBtn}
-          icon={<AntDesign size={18} name={'apple1'} color={colors.white} />}
-        />
+        {
+          selectedPayment == 1 ?
+            <CustomButton
+              onPress={() => setSuccessFullModal(true)}
+              title={'Pay'}
+              btnStyle={styles.applePayBtn}
+              icon={<AntDesign size={18} name={'apple1'} color={colors.white} />}
+            /> :
+
+            <CustomButton
+              title={t('confirm')}
+              onPress={() => setSuccessFullModal(true)}
+              btnStyle={styles.greenBtn}
+            />
+        }
+
+
+
+
       </ScrollView>
 
       {
@@ -318,7 +327,7 @@ const PaymentScreen = ({ navigation }) => {
             <View style={{ marginBottom: 10 }}>
 
               <TouchableOpacity onPress={() => setIsShowDates(!isShowDates)} style={[styles.genderBox, isShowDates && styles.extraStyling]}>
-                <Text style={[styles.selectedValue,{color: selectDate !==''?colors.black:colors.gray1}]}>{selectDate ? selectDate :t("pickDate")}</Text>
+                <Text style={[styles.selectedValue, { color: selectDate !== '' ? colors.black : colors.gray1 }]}>{selectDate ? selectDate : t("pickDate")}</Text>
                 <Entypo name={'chevron-small-down'} size={25} />
               </TouchableOpacity>
               {
@@ -345,7 +354,7 @@ const PaymentScreen = ({ navigation }) => {
             <View>
 
               <TouchableOpacity onPress={() => setIsShowTime(!isShowTime)} style={[styles.genderBox, isShowTime && styles.extraStyling]}>
-                <Text style={[styles.selectedValue,{color:selectedTime !== '' ? colors.black : colors.gray1}]}>{selectedTime ? selectedTime : t("pickTime")}</Text>
+                <Text style={[styles.selectedValue, { color: selectedTime !== '' ? colors.black : colors.gray1 }]}>{selectedTime ? selectedTime : t("pickTime")}</Text>
                 <Entypo name={'chevron-small-down'} size={25} />
               </TouchableOpacity>
               {
@@ -387,22 +396,22 @@ const PaymentScreen = ({ navigation }) => {
 
 
 
-{
-  successFullModal && 
-  <View 
-style={{width:1000,height:1000,backgroundColor:'#00000050',position:"absolute"}}
-/>
-}
+      {
+        successFullModal &&
+        <View
+          style={{ width: 1000, height: 1000, backgroundColor: '#00000050', position: "absolute" }}
+        />
+      }
 
 
-<SuccessFullModal 
-successFullModal={successFullModal}
-setSuccessFullModal={setSuccessFullModal}
+      <SuccessFullModal
+        successFullModal={successFullModal}
+        setSuccessFullModal={setSuccessFullModal}
 
-/>
+      />
 
 
-     
+
     </ScreenView>
   )
 }
@@ -469,6 +478,12 @@ const styles = StyleSheet.create({
   },
   applePayBtn: {
     backgroundColor: colors.black,
+    paddingVertical: 15,
+    gap: 5,
+    marginTop: 40
+  },
+  greenBtn: {
+    backgroundColor: colors.secondary,
     paddingVertical: 15,
     gap: 5,
     marginTop: 40
@@ -562,7 +577,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontFamily: fonts.semiBold,
     fontSize: 16,
-    textAlign:"left"
+    textAlign: "left"
   },
   genderBox: {
     paddingTop: 12,

@@ -10,10 +10,38 @@ import Foundation from 'react-native-vector-icons/Foundation'
 import Google from '../../assets/svg/google.svg'
 import { useTranslation } from 'react-i18next'
 import CheckBoxText from '../../components/CheckBoxText'
+import CustomToast from '../../components/CustomToast'
 
-const CreateAccount = ({navigation}) => {
+const CreateAccount = ({ navigation }) => {
     const { t } = useTranslation()
     const [toggleCheckBox, setToggleCheckBox] = useState(false)
+    const [email, setEmail] = useState('')
+    const [userName, setUserName] = useState('')
+    const [password, setPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
+
+
+    const onPressRegister = () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email == '') {
+            CustomToast(t("pleaseEnterMail"), "danger")
+        }else if (!emailRegex.test(email)) {
+            CustomToast(t("emailIsInvalid"), "danger")
+        } 
+        else if (userName == '') {
+            CustomToast(t("pleaseEnterUserName"), "danger")
+
+        } else if (password == '') {
+            CustomToast(t("pleaseEnterPassword"), "danger")
+
+        } else {
+            CustomToast(t("accountCreatedSuccessfully"), "success")
+            navigation.navigate("LoginScreen")
+
+        }
+
+    }
+
     return (
         <ScreenView scrollable={true}>
             <ScreenTitle title={t('createNew')} subTitle={t('createNewSub')} />
@@ -23,30 +51,40 @@ const CreateAccount = ({navigation}) => {
                     // label={'Email Address'}
                     label={t('emailAddress')}
                     placeholder={t('enterEmail')}
+                    value={email}
+                    onChangeText={setEmail}
                 />
 
                 <LabelInput
                     label={t('userName')}
                     placeholder={t('enterUserName')}
+                    value={userName}
+                    onChangeText={setUserName}
 
                 />
 
                 <LabelInput
                     label={t('password')}
                     placeholder={t('enterPassword')}
-                    icon={true}
+                    eye={true}
+                    value={password}
+                    isShow={!showPassword}
+                    onChangeText={setPassword}
+                    secureTextEntry={!showPassword}
+                    onPressEye={()=>setShowPassword(!showPassword)}
                 />
 
                 <CheckBoxText
                     setToggleCheckBox={setToggleCheckBox}
                     toggleCheckBox={toggleCheckBox}
-                    style={{marginTop:5,marginBottom:15}}
+                    style={{ marginTop: 5, marginBottom: 15 }}
                 />
 
                 <CustomButton
                     title={t('register')}
                     btnStyle={{ marginBottom: 18 }}
-                    onPress={()=>navigation.navigate("LoginScreen")}
+                    // onPress={() => navigation.navigate("LoginScreen")}
+                    onPress={onPressRegister}
                 />
 
 
@@ -133,7 +171,7 @@ const styles = StyleSheet.create({
     notAccount: {
         fontFamily: fonts.regular,
         textAlign: "center",
-        color:colors.black
+        color: colors.black
 
     },
 })

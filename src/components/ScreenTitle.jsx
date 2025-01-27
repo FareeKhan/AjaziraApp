@@ -18,10 +18,8 @@ const styles = StyleSheet.create({
     titleStyle:{
         fontSize:22,
         color:colors.black,
-        fontFamily:fonts.medium,
+        fontFamily:fonts.semiBold,
         textAlign:"left"
-
-     
     },
     subTitle:{
         color:colors.gray1,

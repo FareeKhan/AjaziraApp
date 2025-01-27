@@ -8,20 +8,22 @@ import { Provider } from 'react-redux'
 import { store } from './src/redux/store'
 import AppNavigation from './src/navigation/AppNavigation'
 import SplashScreen from 'react-native-splash-screen'
-
-
+import { ToastProvider } from 'react-native-toast-notifications'
 
 const App = () => {
   useEffect(() => {
     SplashScreen.hide();
   }, [])
-  
+
   return (
-    <GestureHandlerRootView>
-      <Provider store={store}>
-        <AppNavigation />
-      </Provider>
-    </GestureHandlerRootView>
+    <ToastProvider>
+      <GestureHandlerRootView>
+        <Provider store={store}>
+          <AppNavigation />
+        </Provider>
+      </GestureHandlerRootView>
+    </ToastProvider>
+
 
   )
 }

@@ -10,13 +10,13 @@ const CartProducts = ({ data }) => {
         return (
             <View style={styles.box}>
                 <Image borderRadius={10} source={{ uri: item?.image }} style={styles.imageStyle} />
-                <View>
-                    <Text style={styles.title}>{item?.title}</Text>
-                    <Text style={styles.price}>{item?.price}</Text>
+                <View style={{width:"50%",alignItems:"flex-start"}}>
+                    <Text numberOfLines={1} style={styles.title}>{item?.productName}</Text>
+                    <Text style={styles.price}>{`AED ${item?.price}`} </Text>
                 </View>
 
                 <View style={{ marginLeft: "auto" }}>
-                    <Text style={styles.itemTxt}>1 item</Text>
+                    <Text style={styles.itemTxt}>{item?.counter} item</Text>
                 </View>
             </View>
         )
@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
     title: {
         marginBottom: 20,
         fontSize: 15,
-        fontFamily: fonts.semiBold
+        fontFamily: fonts.semiBold,
+        color:colors.black
     },
     price: {
         fontSize: 15,

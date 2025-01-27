@@ -238,4 +238,18 @@
 "great":"Great",
 "submit":"Submit",
 
+
+
+"enterPhoneNo":"Please Enter Phone Number",
+"phoneNotCorrect":"Phone Number is not Correct",
+"pleaseEnterMail":"Please Enter Email",
+"pleaseEnterPassword":"Please Enter Password",
+"pleaseEnterUserName":"Please Enter User Name",
+"accountCreatedSuccessfully":"Account Created Successfully",
+"emailIsInvalid":"Invalid Email",
+"FillField":"Fill the Field",
+"passwordNotMatch":"Passwords do not match. Please try again.",
+"confirm":"Confirm",
+
+
 }

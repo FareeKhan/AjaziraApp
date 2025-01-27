@@ -5,15 +5,13 @@ const { width, height } = Dimensions.get('screen')
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useTranslation } from 'react-i18next'
 import { fonts } from '../../constant/fonts'
-import { getOnBoardingData, onBoardingData } from '../../constant/data'
-import { useDispatch, useSelector } from 'react-redux'
+import { getOnBoardingData } from '../../constant/data'
+import { useDispatch } from 'react-redux'
 import { onBoarding } from '../../redux/Auth'
 
 
 const OnBoarding = ({ navigation }) => {
 
-    const hello = useSelector((state)=>state)
-    console.log('---',hello)
 
     const dispatch = useDispatch()
     const { t } = useTranslation()
@@ -44,6 +42,11 @@ const OnBoarding = ({ navigation }) => {
         }
     };
 
+    const onPressSkip = ()=>{
+        dispatch(onBoarding(true))
+        navigation.navigate('PhoneNoScreen')
+    }
+
 
     const renderItem = ({ item, index }) => {
         const isLastIndex = onBoardingData?.length != index + 1
@@ -66,7 +69,7 @@ const OnBoarding = ({ navigation }) => {
 
                     <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingBottom: 20, }}>
                         {
-                            <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+                            <TouchableOpacity onPress={onPressSkip}>
                                 {isLastIndex &&
                                     <Text style={styles.bottomTxt}>{t("skip")}</Text>}
                             </TouchableOpacity>

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import ScreenView from '../../components/ScreenView'
 import HeaderBox from '../../components/HeaderBox'
@@ -15,13 +15,17 @@ import { useTranslation } from 'react-i18next'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import CustomButton from '../../components/CustomButton'
 import Animated, { FadeInDown } from 'react-native-reanimated'
+import CustomToast from '../../components/CustomToast'
+
 const CELL_COUNT = 4;
-const VerificationScreen = ({navigation,route}) => {
+const VerificationScreen = ({ navigation, route }) => {
+
     const { t } = useTranslation()
-const {phoneNumber} = route?.params
-    
+    const { isEmail,phoneNumber ,type} = route?.params
+
     const [value, setValue] = useState("");
     const [timeLeft, setTimeLeft] = useState(120);
+    const [showToast, setShowToast] = useState(false);
 
 
     const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
@@ -55,6 +59,18 @@ const {phoneNumber} = route?.params
         return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     };
 
+      
+    const onPressResend = () => {
+     CustomToast(t("codeSend"),"success")
+    }
+
+    const onPressContinue = ()=>{
+        if(type =='forgot'){
+            navigation.navigate('ResetPassword')
+        }else{
+            navigation.navigate("LoginScreen")
+        }
+    }
 
     return (
         <ScreenView>
@@ -63,53 +79,59 @@ const {phoneNumber} = route?.params
                 style={{ width: "55%", marginBottom: 20 }}
             />
 
-            <ScreenTitle title={ t('numberVerify')} subTitle={t('numberVerifySubTitle')} />
-            <Text style={{color:colors.gray1,textAlign:"left"}}>{phoneNumber}</Text>
-            
-      <Animated.View entering={FadeInDown.delay(200)}>
+            <ScreenTitle title={ isEmail ?t('emailVerification') :t('numberVerify')} subTitle={t('numberVerifySubTitle')} />
+            <Text style={{ color: colors.gray1, textAlign: "left" }}>{phoneNumber}</Text>
 
-            
-            <CodeField
-                ref={ref}
-                {...props}
-                value={value}
-                onChangeText={setValue}
-                cellCount={CELL_COUNT}
-                rootStyle={styles.codeFieldRoot}
-                keyboardType="number-pad"
-                textContentType="oneTimeCode"
-                renderCell={({ index, symbol, isFocused }) => (
-                    <View
-                        key={index}
-                        style={[styles.cell, isFocused && styles.focusCell]}
-                    >
-                        <Text
-                            style={[styles.cellTxt]}
-                            onLayout={getCellOnLayoutHandler(index)}
+            <Animated.View entering={FadeInDown.delay(200)}>
+
+
+                <CodeField
+                    ref={ref}
+                    {...props}
+                    value={value}
+                    onChangeText={setValue}
+                    cellCount={CELL_COUNT}
+                    rootStyle={styles.codeFieldRoot}
+                    keyboardType="number-pad"
+                    textContentType="oneTimeCode"
+                    renderCell={({ index, symbol, isFocused }) => (
+                        <View
+                            key={index}
+                            style={[styles.cell, isFocused && styles.focusCell]}
                         >
-                            {symbol || (isFocused ? <Cursor /> : null)}
-                        </Text>
-                    </View>
-                )}
-            />
+                            <Text
+                                style={[styles.cellTxt]}
+                                onLayout={getCellOnLayoutHandler(index)}
+                            >
+                                {symbol || (isFocused ? <Cursor /> : null)}
+                            </Text>
+                        </View>
+                    )}
+                />
+                <View style={styles.resendContainer}>
+                    <Text style={styles.notAccount}>{t('notRcvOtp')}</Text>
+                    <TouchableOpacity onPress={()=>onPressResend()}>
+                        <Text style={[styles.notAccount, styles.registerTxt]}>{t('resend')}</Text>
+                    </TouchableOpacity>
+                </View>
 
-            <Text style={styles.notAccount}> {t('notRcvOtp')} <Text onPress={() => alert('Code send successfully')} style={styles.registerTxt}>{t('resend')} </Text> </Text>
+                {/* <Text style={styles.notAccount}> {t('notRcvOtp')} <Text onPress={onPressResend} style={styles.registerTxt}> </Text> </Text> */}
 
 
-            {<View style={styles.timerBox}>
-                <AntDesign name={'clockcircleo'} size={18} color={colors.gray1} />
-                <Text style={styles.timerTxt}>{formatTime(timeLeft)}</Text>
-            </View>}
+                {<View style={styles.timerBox}>
+                    <AntDesign name={'clockcircleo'} size={18} color={colors.gray1} />
+                    <Text style={styles.timerTxt}>{formatTime(timeLeft)}</Text>
+                </View>}
 
 
 
-            <CustomButton
-                title={t('continue')}
-                onPress={()=>navigation.navigate("LoginScreen")}
-            />
+                <CustomButton
+                    title={t('continue')}
+                    onPress={onPressContinue}
+                />
 
-      </Animated.View>
-
+            </Animated.View>
+            {/* {showToast && <CustomToast text="PleaseFillTheFields" type="success" />} */}
 
         </ScreenView>
     )
@@ -147,7 +169,6 @@ const styles = StyleSheet.create({
     },
     notAccount: {
         fontFamily: fonts.regular,
-        marginVertical: 15,
         textAlign: "center",
         color: colors.gray1,
 
@@ -166,5 +187,11 @@ const styles = StyleSheet.create({
     },
     timerTxt: {
         color: colors.gray1
+    },
+    resendContainer:{
+        marginVertical:15,
+        flexDirection:"row",
+        justifyContent:"center",
+        gap:5
     }
 })

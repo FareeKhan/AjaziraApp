@@ -4,16 +4,19 @@ import { categoryData } from '../constant/data'
 import { useTranslation } from 'react-i18next'
 import { colors } from '../constant/colors'
 import { fonts } from '../constant/fonts'
+import { useNavigation } from '@react-navigation/native'
 
 const CategoriesComp = ({selectedItem,setSelectedItem}) => {
+    const navigation = useNavigation()
     const {t} = useTranslation()
     const catData = categoryData(t)
 
-
     const onPressCat = (item)=>{
         setSelectedItem(item?.title)
+        navigation.navigate("CategoryScreenProduct",{
+            title:item?.title
+        })
     }
-
 
     const renderItem = ({ item, index }) => {
         return (

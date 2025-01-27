@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 16,
         fontFamily: fonts.semiBold,
+        color:colors.black
     },
     subTitle: {
         fontFamily: fonts.medium,

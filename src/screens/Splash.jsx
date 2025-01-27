@@ -7,8 +7,6 @@ const height=Dimensions.get('screen')
 const Splash = ({navigation}) => {
     const isOnBoarding = useSelector((state) => state.auth.isOnBoarding);
 
-    console.log('sss',isOnBoarding)
-
     useEffect(() => {
         const timer = setTimeout(() => {
             if(isOnBoarding){

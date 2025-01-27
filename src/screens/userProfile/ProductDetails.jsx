@@ -25,7 +25,12 @@ import { addProductToCart } from '../../redux/ProductAddToCart'
 
 const { height, width } = Dimensions.get('screen')
 
-const ProductDetails = ({ navigation }) => {
+const ProductDetails = ({ navigation ,route}) => {
+    const {catName} = route?.params
+
+    console.log('catName--->>>',catName)
+    console.log('catName--->>>',catName)
+    console.log('catName--->>>',catName)
 
     const dispatch = useDispatch()
 
@@ -81,7 +86,8 @@ const ProductDetails = ({ navigation }) => {
             productName: "Raw Gazelle",
             price: Price,
             counter: counter,
-            image: MeatImage
+            image: MeatImage,
+            catName:catName
 
         }))
         navigation.navigate('MyCartScreen')
@@ -99,8 +105,6 @@ const ProductDetails = ({ navigation }) => {
         <View style={{ flex: 1 }}>
 
             <ScreenView scrollable={true} style={{ paddingHorizontal: 10, paddingTop: 10 }} bottomGradient={0.83}>
-
-
                 <StatusBarColor />
                 <ImageBackground borderRadius={15} style={styles.imgContainer} source={{ uri: goatImg }}>
                     <View style={{ paddingHorizontal: 15 }}>
@@ -228,6 +232,8 @@ const ProductDetails = ({ navigation }) => {
                             <LabelInput
                                 placeholder={"+971 xx xxxxxx"}
                                 inputBoxStyle={{ marginTop: 5 }}
+                                keyboardType='number-pad'
+
 
                             />
 
@@ -246,6 +252,7 @@ const ProductDetails = ({ navigation }) => {
                                 placeholderTextColor={colors.gray1}
                                 style={styles.msgField}
                                 multiline={true}
+
                             />
                         </View>
 
@@ -413,8 +420,9 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     productName: {
-        fontFamily: fonts.medium,
-        fontSize: 18
+        fontFamily: fonts.semiBold,
+        fontSize: 18,
+        color: colors.black
     },
     price: {
         fontSize: 16,
@@ -493,7 +501,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: fonts.medium,
         width: 40,
-        textAlign: "center"
+        textAlign: "center",
+        color: colors.black
     },
     checkOutTxt: {
         color: colors.white,
@@ -534,7 +543,8 @@ const styles = StyleSheet.create({
         textAlignVertical: "top",
         paddingTop: 10,
         textAlign: I18nManager.isRTL ? "right" : "left",
-        fontFamily: fonts.regular
+        fontFamily: fonts.regular,
+        color: colors.black
 
     },
     bottomAddToCart: {
